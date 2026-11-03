@@ -1,0 +1,17 @@
+t06 — what prompt strings render as (print -P expands them exactly as the prompt does)
+
+$ PROMPT='%n@%m %~ %# '   (user, host, current directory, prompt mark)
+root@myhost ~/workspace/zsh-labwork # 
+
+$ PROMPT='%F{green}%~%f %# '   (colour shown as the terminal codes it sends)
+^[[32m~/workspace/zsh-labwork^[[39m # 
+
+$ a prompt that reports how the last command ended:
+$ false; print -P '%(?.ok.oops %?) %~ %# '
+oops 1 ~/workspace/zsh-labwork # 
+$ true;  print -P '%(?.ok.oops %?) %~ %# '
+ok ~/workspace/zsh-labwork # 
+
+$ prompt_subst: $(...) inside the prompt is re-run at every draw
+[01:03:02] ~/workspace/zsh-labwork # 
+[01:03:04] ~/workspace/zsh-labwork # 

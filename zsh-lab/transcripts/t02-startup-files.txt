@@ -1,0 +1,24 @@
+t02 — which startup files each kind of zsh reads
+Each of .zshenv, .zprofile, .zshrc, .zlogin in ZDOTDIR prints a marker.
+
+$ ZDOTDIR=~/zsh-labwork/zdot zsh -c 'echo body'          # script / non-interactive
+  [read: ~/.zshenv]
+body
+
+$ ZDOTDIR=~/zsh-labwork/zdot zsh -ic 'echo body'         # interactive, not login
+  [read: ~/.zshenv]
+  [read: ~/.zshrc]
+body
+
+$ ZDOTDIR=~/zsh-labwork/zdot zsh -lc 'echo body'         # login, not interactive
+  [read: ~/.zshenv]
+  [read: ~/.zprofile]
+  [read: ~/.zlogin]
+body
+
+$ ZDOTDIR=~/zsh-labwork/zdot zsh -ilc 'echo body'        # login and interactive
+  [read: ~/.zshenv]
+  [read: ~/.zprofile]
+  [read: ~/.zshrc]
+  [read: ~/.zlogin]
+body

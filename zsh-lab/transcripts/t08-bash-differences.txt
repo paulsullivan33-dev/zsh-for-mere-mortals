@@ -1,0 +1,46 @@
+t08 — Bash habits under zsh: same text, different shell
+
+### arrays are numbered from...
+--- bash:
+a0=red a1=green count=3
+--- zsh:
+a0= a1=red count=3
+
+### an unquoted variable holding two words, used as arguments
+--- bash:
+ 1 notes.md
+ 1 summary.txt
+ 2 total
+--- zsh:
+wc: 'notes.md summary.txt': No such file or directory
+
+### a glob that matches nothing
+--- bash:
+*.log
+--- zsh:
+zsh:1: no matches found: *.log
+
+### echo and backslash escapes
+--- bash:
+one\ttwo
+--- zsh:
+one	two
+
+### the result of the last command, in a test
+--- bash:
+failed-as-expected
+--- zsh:
+failed-as-expected
+
+### string equality with a pattern on the right
+--- bash:
+matches
+--- zsh:
+matches
+
+### the escape hatch: ask for Bash's rules explicitly
+$ zsh -c 'setopt sh_word_split ksh_arrays; a=(red green blue); echo "a0=${a[0]}"; files="notes.md summary.txt"; wc -l $files'
+a0=red
+ 1 notes.md
+ 1 summary.txt
+ 2 total

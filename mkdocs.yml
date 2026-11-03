@@ -1,0 +1,28 @@
+site_name: Zsh for Mere Mortals
+site_description: The Z shell taught from the first prompt up. The first-run wizard and the startup files, the completion system and how to teach it your own commands, globbing that does a finding tool's work, history shared between shells, a prompt you build yourself without a framework, and the Bash differences that bite, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/zsh-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Zsh Is: what-zsh-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Zsh: installing-zsh.md
+  - First Run and Startup Files: first-run-and-startup-files.md
+  - Completion — the System That Learns: completion.md
+  - Globbing — Patterns That Do Real Work: globbing.md
+  - History — a Memory You Configure: history.md
+  - The Prompt — Yours, Without a Framework: the-prompt.md
+  - Aliases and Functions: aliases-and-functions.md
+  - Coming from Bash — the Differences That Bite: coming-from-bash.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

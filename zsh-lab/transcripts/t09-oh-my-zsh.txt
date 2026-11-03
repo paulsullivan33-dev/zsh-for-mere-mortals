@@ -1,0 +1,25 @@
+t09 — Oh My Zsh, loaded for real in a scratch shell
+
+$ ls omz/themes/*.zsh-theme | wc -l; ls omz/plugins | wc -l
+143
+372
+
+$ the whole configuration (zdot-omz/.zshrc):
+export ZSH=~/zsh-labwork/omz
+ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+$ at a real terminal inside the repository, the prompt is drawn as:
+➜  demorepo git:(master)
+(the arrow is bold green, the directory cyan, git:(...) blue with the branch in red;
+colour codes stripped here — captured from a live terminal session)
+
+$ the git plugin's aliases (a sample):
+gst='git status'
+gco='git checkout'
+gp='git push'
+
+$ startup time of an interactive shell, best of five (shared machine, treat as a range):
+plain zsh (compinit only): 60 ms
+Oh My Zsh (robbyrussell + git plugin): 77 ms

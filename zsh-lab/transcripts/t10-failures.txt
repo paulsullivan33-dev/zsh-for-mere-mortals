@@ -1,0 +1,27 @@
+t10 — failures, exactly as the shell reports them
+
+--- a .zshrc with an unknown option and an unterminated quote:
+PS1="zsh> "
+setopt no_such_option
+echo "half-configured
+$ zsh -ic 'echo STARTED'
+~/zsh-labwork/zdot-bad/.zshrc:setopt:2: no such option: no_such_option
+~/zsh-labwork/zdot-bad/.zshrc:4: unmatched "
+STARTED
+
+--- the same check without starting the shell: zsh -n (parse only)
+$ zsh -n broken.sh
+broken.sh:3: parse error near `\n'
+$ zsh -n zdot-bad/.zshrc
+zdot-bad/.zshrc:4: unmatched "
+
+--- compinit's security check: a world-writable directory in fpath
+$ compaudit
+There are insecure directories:
+~/zsh-labwork/badcomp
+
+--- setopt correct: the shell offers to fix a mistyped command (interactive)
+$ sl
+zsh: correct 'sl' to 'ls' [nyae]? n
+zsh: command not found: sl
+(answered n; y would have run ls, a aborts, e lets you edit the line)

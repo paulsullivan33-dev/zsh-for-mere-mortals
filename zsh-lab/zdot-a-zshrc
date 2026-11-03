@@ -1,0 +1,5 @@
+PS1='zsh> '
+alias ll="ls -l"
+alias -g LOG="| tee run.log"
+alias -s md="head -n 2"
+count() { local n=$(ls "$1" | wc -l); echo "$1 holds $n entries"; }

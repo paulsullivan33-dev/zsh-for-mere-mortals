@@ -1,0 +1,76 @@
+t04 — globbing, run inside the fixture tree (see zsh-lab/fixtures)
+
+$ print -l *.txt
+draft.txt
+fresh-note.txt
+report-2024.txt
+report-2025.txt
+summary.txt
+
+$ print -l **/*.txt
+archive/old-report-2019.txt
+draft.txt
+fresh-note.txt
+report-2024.txt
+report-2025.txt
+src/notes.txt
+summary.txt
+
+$ print -l *(.)
+data-01.csv
+data-02.csv
+data-03.csv
+draft.txt
+draft.txt~
+fresh-note.txt
+notes.md
+report-2024.txt
+report-2025.txt
+summary.txt
+
+$ print -l *(/)
+archive
+photos
+src
+
+$ print -l *(mh-1)
+archive
+data-01.csv
+data-02.csv
+data-03.csv
+draft.txt
+draft.txt~
+fresh-note.txt
+notes.md
+photos
+report-2024.txt
+report-2025.txt
+src
+
+$ setopt extended_glob; print -l *.txt~draft*
+fresh-note.txt
+report-2024.txt
+report-2025.txt
+summary.txt
+
+$ setopt extended_glob; print -l report-<2024-2025>.txt
+report-2024.txt
+report-2025.txt
+
+$ print -l src/*.(c|h)
+src/header.h
+src/main.c
+src/util.c
+
+$ print -l *.log
+zsh:1: no matches found: *.log
+
+$ print -l *.log(N)
+
+
+$ print -l *(.) | sort | head -3; echo ...; print -l .*(.)
+data-01.csv
+data-02.csv
+data-03.csv
+...
+.hidden-note

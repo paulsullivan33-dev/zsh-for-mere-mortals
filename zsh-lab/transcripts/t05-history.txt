@@ -1,0 +1,42 @@
+t05 — history across two sessions. Interactive sessions on a real
+terminal; control sequences removed and the prompt tidied.
+Both sessions use zsh-lab/zdot-history-zshrc: HISTFILE set,
+HISTSIZE=SAVEHIST=1000, and the options share_history,
+inc_append_history and hist_ignore_all_dups.
+
+--- session A
+zsh> echo alpha
+alpha
+zsh> echo beta
+beta
+zsh> echo alpha
+alpha
+zsh> fc -l 1
+    2  echo beta
+    3  echo alpha
+(the first "echo alpha" is gone: hist_ignore_all_dups removed the
+older copy when the command was repeated. Event numbers keep the
+gap where it was.)
+zsh> exit
+
+--- session B (a new shell, started after A ended)
+zsh> fc -l 1
+    1  echo beta
+    2  echo alpha
+    4  exit
+(session A's commands are already here — share_history reads the
+shared file as the shell starts and keeps it current as you work)
+zsh> echo gamma
+gamma
+zsh> !!
+echo gamma
+gamma
+(the shell shows the expansion it is about to run, then runs it)
+zsh> exit
+
+--- the file itself afterwards (~/.zsh_history)
+echo beta
+echo alpha
+fc -l 1
+echo gamma
+exit

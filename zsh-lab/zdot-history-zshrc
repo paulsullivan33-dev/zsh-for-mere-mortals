@@ -1,0 +1,5 @@
+PS1='zsh> '
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+setopt share_history hist_ignore_all_dups inc_append_history

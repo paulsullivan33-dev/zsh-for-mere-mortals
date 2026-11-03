@@ -1,0 +1,39 @@
+t07 — aliases and functions (definitions live in .zshrc, see zsh-lab/zdot-a-zshrc)
+
+$ ll src
+total 16
+-rw-rw---- 1 root root 13 Nov  3 00:56 header.h
+-rw-rw---- 1 root root 26 Nov  3 00:56 main.c
+-rw-rw---- 1 root root 12 Nov  3 00:56 notes.txt
+-rw-rw---- 1 root root 14 Nov  3 00:56 util.c
+
+$ alias
+LOG='| tee run.log'
+ll='ls -l'
+which-command=whence
+$ alias -s     # suffix aliases live in their own list
+md='head -n 2'
+
+--- a global alias expands anywhere on the line, not just at the start
+$ echo first line LOG      # LOG is short for: | tee run.log
+first line
+first line
+
+--- a suffix alias: type a file's name, its extension chooses the program
+$ notes.md
+sample contents for notes.md
+
+--- a function: arguments, a local, and the whence report
+photos holds 4 entries
+
+count () {
+	local n=$(ls "$1" | wc -l) 
+	echo "$1 holds $n entries"
+}
+
+--- autoload: a function kept in a file of its own, loaded on first use
+file ~/zsh-labwork/fpath/shout contains:
+# shout — print the arguments in upper case
+echo ${@:u}
+HELLO FROM A FILE
+shout is a shell function from ~/zsh-labwork/fpath/shout

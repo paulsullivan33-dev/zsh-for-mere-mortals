@@ -1,0 +1,7 @@
+PS1='zsh> '
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+greet() { echo "hello, $1" }
+_greet() { compadd alice bob carol }
+compdef _greet greet

@@ -1,0 +1,35 @@
+t03 — completion at a real terminal. [TAB] marks pressing the Tab
+key; terminal control sequences removed and the prompt tidied.
+The shell's .zshrc is zsh-lab/zdot-completion-zshrc (compinit, a
+case-insensitive matcher, and one hand-written completion).
+
+zsh> cd ~/zsh-labwork/fixtures/tree
+zsh> cat rep[TAB]
+(the line now reads: cat report-202 — the part both names share;
+the shell beeps, because two files still fit)
+zsh> cat report-202[TAB]
+report-2024.txt  report-2025.txt
+(a second Tab lists the candidates; type 4 or 5 to finish the name)
+
+zsh> cat REP[TAB][TAB]
+report-2024.txt  report-2025.txt
+(upper case completes too: the matcher-list line in the .zshrc maps
+typed lower case to either case in the candidates)
+
+zsh> greet a[TAB]
+(the line now reads: greet alice — the _greet completion function
+offered the names it was written to offer)
+zsh> greet alice
+hello, alice
+
+zsh> ls ph[TAB]
+(the line now reads: ls photos/ — one candidate, completed in full,
+with the slash added)
+zsh> ls photos/[TAB]
+img-001.jpg  img-002.jpg  img-003.jpg  logo.png
+(Tab inside the directory lists what can come next)
+
+Also verified outside the terminal session: the first compinit run
+writes a compiled dump beside the .zshrc (ls showed .zcompdump,
+51,147 bytes for this machine's full function set), and later shells
+reuse it instead of rescanning every completion file.

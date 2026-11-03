@@ -1,0 +1,29 @@
+t11 — the recipe mechanisms, run in the fixture tree
+
+$ (cd **/old-report-2019.txt(:h) && pwd)   # :h keeps the directory part
+~/zsh-labwork/fixtures/tree/archive
+
+$ print -l *.txt(:r)                  # :r strips the extension
+draft
+fresh-note
+report-2024
+report-2025
+summary
+
+$ autoload -Uz zmv; zmv -n 'report-(*).txt' 'summary-$1.txt'   # -n: dry run
+mv -- report-2024.txt summary-2024.txt
+mv -- report-2025.txt summary-2025.txt
+
+$ echo newest: *(om[1])               # om: newest first; [1]: take one
+newest: fresh-note.txt
+$ echo oldest: *(Om[1])
+oldest: summary.txt
+
+$ { false } always { echo cleaned-up-anyway }
+cleaned-up-anyway
+exit status was 1
+
+$ for d in */; do (cd "$d" && pwd); done
+~/zsh-labwork/fixtures/tree/archive
+~/zsh-labwork/fixtures/tree/photos
+~/zsh-labwork/fixtures/tree/src
